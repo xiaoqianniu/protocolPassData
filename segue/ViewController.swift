@@ -19,16 +19,18 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.reloadData()
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = array[indexPath.row]
-        tableView.reloadData()
-        return cell
+
+                return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(array.count)
+        
         return array.count
         
     }
@@ -47,7 +49,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     func passData(data: String) {
        array.append(data)
         print(array)
-        
+        tableView.reloadData()
     }
     
 }
